@@ -14,8 +14,9 @@ import Hatch
 animation t =     offset (-400)   200  (dogwheel t)
               <@> offset (-400) (-200) (gooseChase t)
               <@> offset  400    200   (dogwheel t)
-              <@> offset  0      200   (rotate (-t) cat)
+              <@> offset  0      200   (rotate (t) dog)
               <@> offset (-300)  0     (text "Welcome to CS141!")
+              <@> offset 0 200 (scale 3 duck)
 
 -- A load of dogs spinning around
 dogwheel t = superimposeAll [spinningDog x | x <- [t, t + 45 .. t + 315 ] ]
@@ -24,6 +25,6 @@ dogwheel t = superimposeAll [spinningDog x | x <- [t, t + 45 .. t + 315 ] ]
 spinningDog t = rotate t (offset 100 0 dog)
 
 -- The bottom of the screen goose chase
-gooseChase t = offset (t * 2) 0 (duck <|> duck <|> scale 2 goose)
+gooseChase t = offset (t * 2) 0 (duck <|> duck <|> offset (t * 2) 0 (mirror (scale 2 goose)))
 
 --------------------------------------------------------------------------------
